@@ -1,5 +1,5 @@
 #include "Server.hpp"
-
+// #include "CommandHandler.hpp"
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <fcntl.h>
@@ -17,7 +17,7 @@ static void handleSignal(int)
 }
 
 Server::Server(int port, const std::string &password)
-	: _port(port), _password(password), _listenFd(-1)
+	: /*_handler(*this),*/ _port(port), _password(password), _listenFd(-1)
 {
 	try
 	{
@@ -180,6 +180,7 @@ void Server::_readFromClient(size_t index)
 void Server::_processLine(Client &client, const std::string &line)
 {
 	std::cout << "[fd " << client.getFd() << "] line: '" << line << "'" << std::endl;
+	// _handler.execute(client, line); //c'est a moi de faire ca je pense;
 }
 
 void Server::_removeClient(size_t index)

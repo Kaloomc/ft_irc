@@ -6,33 +6,23 @@
 /*   By: jbastiat <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/06 10:27:20 by jbastiat          #+#    #+#             */
-/*   Updated: 2026/11/06 12:08:42 by jbastiat         ###   ########.fr       */
+/*   Updated: 2026/11/12 15:17:52 by jbastiat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <iostream>
-# include <string>
-#include <vector>
+#include "parsing.hpp"
 
-struct message
+Message parsing(std::string cmd)
 {
-    std::string prefix;
-    std::string command;
-    std::vector<std::string> parameters;
-    std::string trailing;
-    bool hasPrefix;
-    bool hasTrailing;
-	bool valid;
-};
-
-message parsing(std::string cmd)
-{
-	message message;
+	Message message;
 	unsigned long pos = 0;
 	unsigned long end;
 	unsigned long paramCount = 0;
 
 	message.valid = 0;
+	message.hasTrailing = 0;
+	message.hasPrefix = 0;
+
     pos = cmd.find_first_not_of(' ');
 	if (pos == std::string::npos)
         return(message);
