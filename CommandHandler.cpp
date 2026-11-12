@@ -94,7 +94,6 @@ void CommandHandler::_handleNick(Client &client, const Message &msg)
 
 	if (user.registered) //changement de pseudo
 	{
-
 	}
 	if (msg.parameters.size() != 1)
 	{
